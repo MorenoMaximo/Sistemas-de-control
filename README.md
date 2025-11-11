@@ -2,23 +2,22 @@
 ## Introducción al Control y al Control Clásico
 
 ### ¿Qué es el control?
-***Definición de control:*** Es un proceso de modificación y ajuste de la entrada de un sistema para obtener una salida deseada. Se basa en la idea de reducir o eliminar la discrepancia entre el valor real de una variable (temperatura, velocidad, presión) y el valor deseado o referencia. <br>
-Este proceso se aplica a un sistema o planta las cuales pueden ser:
+***Definición de control:*** Proceso que modifica y ajusta de la entrada de un sistema para obtener una salida deseada. Pueden ser:
 
-***Sistema en lazo abierto:*** La señal de control se aplica sin ningún tipo de retroalimentación. El sistema no tiene información sobre su estado actual, por lo que su comportamiento depende únicamente de las entradas aplicadas.
+***Sistema en lazo abierto:*** La señal de entrada se aplica sin realimentación. El sistema no tiene información sobre su estado actual, por lo que su comportamiento depende únicamente de las entradas aplicadas.
 
 - *Ventaja:* es simple y rápido.
 - *Desventaja:* no tiene capacidad para adaptarse a cambios o perturbaciones en el sistema. Ejemplo: Un sistema de riego controlado por tiempo.
 
-***Sistema en lazo cerrado:*** La señal de control se ajusta según la retroalimentación de la salida del sistema. 
+***Sistema en lazo cerrado:*** La señal de control se ajusta según la realimentación de la salida del sistema. 
 - *Ventaja:* Mejora la precisión, ya que el sistema puede corregir automáticamente su comportamiento.
 - *Ejemplo:* El termostato en un sistema de calefacción, que ajusta la calefacción en función de la temperatura medida.
 
 ## Elementos de un sistema de control
 
-- ***Planta:*** El sistema que se va a controlar. Puede ser cualquier proceso físico, como un motor eléctrico, un sistema térmico o un sistema hidráulico.
-- ***Sensor:*** Mide la variable controlada (temperatura, posición o velocidad). La medición debe ser precisa para que el controlador ajuste correctamente la señal de control.
-- ***Controlador:*** Se encarga de calcular y enviar la señal de control adecuada al actuador, basándose en la retroalimentación obtenida del sensor.
+- ***Planta:*** El sistema que se va a controlar.
+- ***Sensor:*** Mide la variable controlada. La medición debe ser precisa para que el controlador ajuste la señal de control.
+- ***Controlador:*** Calcula y envía la señal de control adecuada al actuador, basándose en la retroalimentación obtenida del sensor.
 - ***Actuador:*** El actuador ejecuta la señal de control, modificando la planta. Podría ser un motor, una válvula o un calentador, entre otros.
 
 ## Modelado de Sistemas y Funciones de Transferencia
