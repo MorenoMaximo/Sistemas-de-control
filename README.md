@@ -2,66 +2,73 @@
 ## Introducción al Control y al Control Clásico
 
 ### ¿Qué es el control?
-***Definición de control:*** Es un proceso de modificación y ajuste de la entrada de un sistema para obtener una salida deseada. Se basa en la idea de reducir o eliminar la discrepancia entre el valor real de una variable (temperatura, velocidad, presión) y el valor deseado o referencia. Este proceso se aplica a un sistema o planta las cuales pueden ser:
+***Definición de control:*** Es un proceso de modificación y ajuste de la entrada de un sistema para obtener una salida deseada. Se basa en la idea de reducir o eliminar la discrepancia entre el valor real de una variable (temperatura, velocidad, presión) y el valor deseado o referencia. <br>
+Este proceso se aplica a un sistema o planta las cuales pueden ser:
 
 ***Sistema en lazo abierto:*** La señal de control se aplica sin ningún tipo de retroalimentación. El sistema no tiene información sobre su estado actual, por lo que su comportamiento depende únicamente de las entradas aplicadas.
 
-- Ventaja: es simple y rápido.
-- Desventaja no tiene capacidad para adaptarse a cambios o perturbaciones en el sistema. Ejemplo: Un sistema de riego controlado por tiempo.
+- *Ventaja:* es simple y rápido.
+- *Desventaja:* no tiene capacidad para adaptarse a cambios o perturbaciones en el sistema. Ejemplo: Un sistema de riego controlado por tiempo.
 
-***Sistema en lazo cerrado:*** La señal de control se ajusta según la retroalimentación de la salida del sistema. Esto mejora la precisión, ya que el sistema puede corregir automáticamente su comportamiento. Ejemplo: El termostato en un sistema de calefacción, que ajusta la calefacción en función de la temperatura medida.
+***Sistema en lazo cerrado:*** La señal de control se ajusta según la retroalimentación de la salida del sistema. 
+- *Ventaja:* Mejora la precisión, ya que el sistema puede corregir automáticamente su comportamiento.
+- *Ejemplo:* El termostato en un sistema de calefacción, que ajusta la calefacción en función de la temperatura medida.
 
 ## Elementos de un sistema de control
 
-- Planta: Es el sistema que se va a controlar. Puede ser cualquier proceso físico, como un motor eléctrico, un sistema térmico o un sistema hidráulico.
-- Sensor: Mide la variable controlada, como la temperatura, la posición o la velocidad. La medición debe ser precisa para que el controlador ajuste correctamente la señal de control.
-- Controlador: Se encarga de calcular y enviar la señal de control adecuada al actuador, basándose en la retroalimentación obtenida del sensor.
-- Actuador: El actuador ejecuta la señal de control, modificando la planta. Esto podría ser un motor, una válvula o un calentador, entre otros.
+- ***Planta:*** El sistema que se va a controlar. Puede ser cualquier proceso físico, como un motor eléctrico, un sistema térmico o un sistema hidráulico.
+- ***Sensor:*** Mide la variable controlada (temperatura, posición o velocidad). La medición debe ser precisa para que el controlador ajuste correctamente la señal de control.
+- ***Controlador:*** Se encarga de calcular y enviar la señal de control adecuada al actuador, basándose en la retroalimentación obtenida del sensor.
+- ***Actuador:*** El actuador ejecuta la señal de control, modificando la planta. Podría ser un motor, una válvula o un calentador, entre otros.
 
 ## Modelado de Sistemas y Funciones de Transferencia
+Todo sistema físico (una bomba, un horno, un motor, una válvula) responde con cierto retardo ante una señal de entrada. Para poder diseñar un controlador, necesitamos una representación matemática que describa cómo responde ese sistema.
 
-Todo sistema físico (una bomba, un horno, un motor, una válvula) responde con cierto retardo o dinámica ante una señal de entrada. Para poder diseñar un controlador, necesitamos una representación matemática que describa cómo responde ese sistema.
+El **modelado** es el proceso de crear una representación abstracta de un *sistema físico* o *proceso*, utilizando herramientas matemáticas. Este modelo permite predecir cómo se comportará el sistema bajo diferentes condiciones y es fundamental para diseñar el controlador. <br>
+El modelado nos permite:
 
-El modelado es el proceso de crear una representación abstracta de un sistema físico o proceso, utilizando herramientas matemáticas. Este modelo permite predecir cómo se comportará el sistema bajo diferentes condiciones y es fundamental para diseñar el controlador. EL modelado nos permite:
+1.  *Predecir* la respuesta temporal del sistema ante una acción de control o una perturbación (cambio externo).
+2.	*Diseñar* la base matemática para diseñar, analizar y sintonizar un controlador (como el PID).
+3.	*Simular* el controlador en un entorno virtual antes de implementarlo en el sistema físico real.
 
--	1.  Predecir la respuesta temporal del sistema ante una acción de control o una perturbación (cambio externo).
-- 2.	Diseño: Es la base matemática para diseñar, analizar y sintonizar un controlador (como el PID).
-- 3.	Simulación: Permite probar el controlador en un entorno virtual antes de implementarlo en el sistema físico real.
+### Formas para expresar el modelado
+***Ecuaciones Integro Diferenciales (ED):*** Forma original del modelo, basadas en leyes físicas (Leyes de Newton para sistemas mecánicos, Leyes de Kirchhoff para eléctricos, balances de energía o masa para químicos). La transformada de Laplace nos permite convertir esas ecuaciones integro-diferenciales en expresiones algebraicas, más fáciles de manipular y entender.
 
-**Hay tres formas para expresar el modelado, pero veremos una de ellas**
-***Ecuaciones Integro Diferenciales (ED):*** Es la forma original del modelo, basadas en leyes físicas (Leyes de Newton para sistemas mecánicos, Leyes de Kirchhoff para eléctricos, balances de energía o masa para químicos).La transformada de Laplace nos permite convertir esas ecuaciones integro-diferenciales en expresiones algebraicas, más fáciles de manipular y entender.
-
-- Transformada de Laplace: $L{f(t)}=F(s)=>\int_0^\infty f(t)^{-st}dt$
+<p align="center">
+  Transformada de Laplace: $L{f(t)}=F(s)=>\int_0^\infty f(t)^{-st}dt$
+</p>
 
 **Ejemplo:** Para un sistema masa-resorte-amortiguador, se aplica la Segunda Ley de Newton para obtener una ED de segundo orden.
-Función de Transferencia $G(s)$ es la representación más usada en control clásico. Se obtiene aplicando la Transformada de Laplace a la ecuación diferencial lineal: <br>
+Función de Transferencia $G(s)$ es la representación más usada en control clásico. Se obtiene aplicando la Transformada de Laplace a la ecuación diferencial lineal:
+<p align="center">
 $$G(s) = \frac{\text{Salida}(s)}{\text{Entrada}(s)}$$ <br>
+</p>
+
 En el diagrama de bloques, esta función representa al Proceso/Planta.
 
-Con el modelo obtenido podemos estudiar la *respuesta temporal del sistema*, es el comportamiento de su salida (Variable a Controlada) a lo largo del tiempo, luego de que se le aplica una señal de entrada específica. <br>
-Es la forma en que el sistema reacciona dinámicamente. Para el análisis, se usan entradas de prueba estándar, siendo la más común la Entrada Escalón Unitario.
+Con el modelo obtenido podemos estudiar la ***respuesta temporal del sistema***, es el comportamiento de su salida (variable a controlar) a lo largo del tiempo, luego de que se le aplica una señal de entrada específica. <br>
+Es la forma en que el sistema reacciona dinámicamente. Para el análisis, se usan entradas de prueba estándar, siendo la más común la *Entrada Escalón Unitario*.
 
 A esta respuesta temporal la analizaremos en dos partes:
 
 ### 1. Respuesta Transitoria
 Es el comportamiento inicial y dinámico del sistema, que ocurre inmediatamente después de un cambio en la entrada.
 
-*Características:* Suele estar marcada por picos, oscilaciones y cambios rápidos. Esta parte eventualmente desaparece.
-**Parámetros importantes (para sintonizar el PID):**
-- Tiempo de Levantamiento ($t_r$): Tiempo para ir del 10% al 90% del valor final.
-(Relacionado con la velocidad de la respuesta).
+*Características:* Suele estar marcada por picos, oscilaciones y cambios rápidos. Esta parte eventualmente desaparece. <br>
+*Parámetros importantes (para sintonizar el PID):*
+- Tiempo de Levantamiento ($t_r$): Tiempo para ir del 10% al 90% del valor final. (Relacionado con la velocidad de la respuesta).
 - Sobrepaso Máximo ($M_p$): La máxima excursión por encima del valor final deseado.(Relacionado con la estabilidad del sistema).
 - Tiempo Pico ($t_p$): Tiempo en el que se alcanza el primer sobrepaso.
 
 ### 2. Respuesta en Estado Estable
 Es el comportamiento del sistema después de que ha transcurrido un tiempo largo, cuando la respuesta transitoria ha desaparecido. 
 
-*Características:* La salida se estabiliza cerca del valor deseado. 
-**Parámetros importantes:**
+*Características:* La salida se estabiliza cerca del valor deseado. <br>
+*Parámetros importantes:*
 - Error en Estado Estacionario ($e_{ss}$): La diferencia final y permanente entre el valor de entrada y la salida. (El objetivo del término Integral del PID es eliminar este error).
 - Tiempo de estabilizacion ($t_s$): El tiempo requerido para que la respuesta se mantenga dentro de un pequeño porcentaje (usualmente 2% o 5%) del valor final.
 
-Comprender el modelado (la $G(s)$) y la respuesta temporal es lo que permite entender cómo los términos P, I, y D del controlador afectan directamente la velocidad, la estabilidad y el error del sistema. para esto debemos enteder como es la respeusta temporal de un sistema.
+Comprender el modelado $G(s)$ y la respuesta temporal es lo que permite entender cómo los términos P, I, y D del controlador afectan directamente la velocidad, la estabilidad y el error del sistema. para esto debemos enteder como es la respeusta temporal de un sistema.
 
 ## Sistemas de Primer Orden Control
 
